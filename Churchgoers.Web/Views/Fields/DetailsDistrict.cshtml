@@ -1,50 +1,62 @@
-﻿@model IEnumerable<Churchgoers.Common.Entities.Field>
+﻿@model Churchgoers.Common.Entities.District
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Details";
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-<br />
+<h2>Details</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add New</a>
-</p>
+<div>
+    <h4>District</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChurchesNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChurchesNumber)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AddChurch" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Church</a>
+    <a asp-action="EditDistrict" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Details" asp-route-id="@Model.IdField" class="btn btn-success">Back to List</a>
+</div>
+<br />
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Fields</h3>
+                <h3 class="panel-title">Cities</h3>
             </div>
             <div class="panel-body">
                 <table class="table table-hover table-responsive table-striped" id="MyTable">
-
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Name)
+                                @Html.DisplayNameFor(model => model.Churches.FirstOrDefault().Name)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DistrictsNumber)
-                            </th>
-
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Churches)
                         {
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DistrictsNumber  )
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-align-justify"></i></a>
+                                    <a asp-action="EditChurch" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
                                     <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                                 </td>
                             </tr>
@@ -68,7 +80,7 @@
             $('#MyTable').DataTable();
 
             // Delete item
-            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Fields/Delete/', false);
+            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Fields/DeleteChurch/', false);
         });
     </script>
 }

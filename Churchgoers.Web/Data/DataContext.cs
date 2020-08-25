@@ -15,21 +15,29 @@ namespace Churchgoers.Web.Data
 
         public DbSet<Field> Fields { get; set; }
 
+        public DbSet<Profession> Professions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Church>()
-                .HasIndex(t => t.Name)
-                .IsUnique();
+            modelBuilder.Entity<Field>(fie =>
+            {
+                fie.HasIndex("Name").IsUnique();
+                fie.HasMany(f => f.Districts).WithOne(d => d.Field).OnDelete(DeleteBehavior.Cascade);
+            });
 
-            modelBuilder.Entity<District>()
-                .HasIndex(t => t.Name)
-                .IsUnique();
+            modelBuilder.Entity<District>(dis =>
+            {
+                dis.HasIndex("Name", "FieldId").IsUnique();
+                dis.HasOne(d => d.Field).WithMany(f => f.Districts).OnDelete(DeleteBehavior.Cascade);
+            });
 
-            modelBuilder.Entity<Field>()
-                .HasIndex(t => t.Name)
-                .IsUnique();
+            modelBuilder.Entity<Church>(chu =>
+            {
+                chu.HasIndex("Name", "DistrictId").IsUnique();
+                chu.HasOne(c => c.District).WithMany(d => d.Churches).OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

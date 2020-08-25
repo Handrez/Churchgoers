@@ -22,5 +22,8 @@ namespace Churchgoers.Common.Entities
         [JsonIgnore]
         [NotMapped]
         public int IdField { get; set; }
+
+        [JsonIgnore]
+        public Field Field { get; set; }
     }
 }
