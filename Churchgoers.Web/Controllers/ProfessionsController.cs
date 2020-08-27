@@ -1,5 +1,6 @@
 ﻿using Churchgoers.Common.Entities;
 using Churchgoers.Web.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Churchgoers.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProfessionsController : Controller
     {
         private readonly DataContext _context;

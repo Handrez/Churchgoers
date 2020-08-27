@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Churchgoers.Common.Entities;
 using Churchgoers.Web.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Churchgoers.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FieldsController : Controller
     {
         private readonly DataContext _context;

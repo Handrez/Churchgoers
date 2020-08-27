@@ -1,0 +1,83 @@
+﻿@model Churchgoers.Web.Models.EditUserViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ChangeUser" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageId" />
+
+            <partial name="_User" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="ChangePassword" class="btn btn-warning">Change Password</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <img src="@Model.ImageFullPath" style="width:250px;height:250px;border-radius:50%" />
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FieldId").change(function () {
+                $("#DistrictId").empty();
+                $("#DistrictId").append('<option value="0">[Select a district...]</option>');
+                $("#ChurchId").empty();
+                $("#ChurchId").append('<option value="0">[Select a church...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDistricts")',
+                    dataType: 'json',
+                    data: { fieldId: $("#FieldId").val() },
+                    success: function (subcategories) {
+                        $.each(subcategories, function (i, district) {
+                            debugger;
+                            $("#DistrictId").append('<option value="'
+                                + district.id + '">'
+                                + district.name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve district.' + ex);
+                    }
+                });
+                return false;
+            })
+
+            $("#DistrictId").change(function () {
+                $("#ChurchId").empty();
+                $("#ChurchId").append('<option value="0">[Select a church...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetChurches")',
+                    dataType: 'json',
+                    data: { districtId: $("#DistrictId").val() },
+                    success: function (churches) {
+                        $.each(churches, function (i, church) {
+                            debugger;
+                            $("#ChurchId").append('<option value="'
+                                + church.id + '">'
+                                + church.name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve church.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+}
