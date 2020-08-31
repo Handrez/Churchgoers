@@ -120,5 +120,11 @@ namespace Churchgoers.Web.Helpers
                 .Include(u => u.Profession)
                 .FirstOrDefaultAsync(u => u.Id == userId.ToString());
         }
+
+        public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
+        {
+            return await _signInManager.CheckPasswordSignInAsync(user, password, false);
+        }
+
     }
 }

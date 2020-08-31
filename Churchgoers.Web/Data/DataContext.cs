@@ -23,6 +23,10 @@ namespace Churchgoers.Web.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Profession>()
+               .HasIndex(t => t.Name)
+               .IsUnique();
+
             modelBuilder.Entity<Field>(fie =>
             {
                 fie.HasIndex("Name").IsUnique();

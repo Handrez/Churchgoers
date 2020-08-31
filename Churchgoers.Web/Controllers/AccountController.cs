@@ -30,7 +30,10 @@ namespace Churchgoers.Web.Controllers
             _combosHelper = combosHelper;
             _blobHelper = blobHelper;
         }
-
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
 
         public IActionResult Login()
         {

@@ -33,5 +33,7 @@ namespace Churchgoers.Web.Helpers
 
         Task<User> GetUserAsync(Guid userId);
 
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+
     }
 }
