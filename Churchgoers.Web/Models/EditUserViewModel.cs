@@ -38,8 +38,8 @@ namespace Churchgoers.Web.Models
 
         [Display(Name = "Image")]
         public string ImageFullPath => ImageId == Guid.Empty
-            ? $"https://localhost:44321/images/noimage.png"
-            : $"https://handrez.blob.core.windows.net/users/{ImageId}";
+            ? $"https://churchgoers.azurewebsites.net/images/noimage.png"
+            : $"https://handres.blob.core.windows.net/users/{ImageId}";
 
         [Display(Name = "Image")]
         public IFormFile ImageFile { get; set; }
