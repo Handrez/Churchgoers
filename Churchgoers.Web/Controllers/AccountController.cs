@@ -5,6 +5,7 @@ using Churchgoers.Web.Data;
 using Churchgoers.Web.Data.Entities;
 using Churchgoers.Web.Helpers;
 using Churchgoers.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,9 +36,13 @@ namespace Churchgoers.Web.Controllers
             _blobHelper = blobHelper;
             _mailHelper = mailHelper;
         }
+        
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            return View(await _context.Users
+                .Include(u => u.Church)
+                .Include(p => p.Profession)
+                .ToListAsync());
         }
 
         public IActionResult Login()
