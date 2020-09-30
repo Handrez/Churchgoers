@@ -1,4 +1,4 @@
-﻿using Churchgoers.Common.Entities;
+﻿using Churchgoers.Web.Data.Entities;
 using Churchgoers.Web.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;

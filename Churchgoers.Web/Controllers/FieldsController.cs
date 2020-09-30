@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Churchgoers.Web.Data;
+using Churchgoers.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Churchgoers.Common.Entities;
-using Churchgoers.Web.Data;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Churchgoers.Web.Controllers
 {
@@ -26,6 +25,8 @@ namespace Churchgoers.Web.Controllers
         {
             return View(await _context.Fields
                 .Include(f => f.Districts)
+                .ThenInclude(d => d.Churches)
+                .ThenInclude(c => c.Users)
                 .ToListAsync());
         }
 
@@ -39,6 +40,7 @@ namespace Churchgoers.Web.Controllers
             Field field = await _context.Fields
                .Include(f => f.Districts)
                .ThenInclude(d => d.Churches)
+               .ThenInclude(c => c.Users)
                .FirstOrDefaultAsync(m => m.Id == id);
             if (field == null)
             {
@@ -296,6 +298,7 @@ namespace Churchgoers.Web.Controllers
 
             District district = await _context.Districts
                 .Include(d => d.Churches)
+                .ThenInclude(c => c.Users)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (district == null)
             {

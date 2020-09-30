@@ -1,11 +1,9 @@
-﻿using Churchgoers.Common.Entities;
-using Churchgoers.Common.Enums;
+﻿using Churchgoers.Common.Enums;
 using Churchgoers.Common.Responses;
 using Churchgoers.Web.Data;
 using Churchgoers.Web.Data.Entities;
 using Churchgoers.Web.Helpers;
 using Churchgoers.Web.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +34,7 @@ namespace Churchgoers.Web.Controllers
             _blobHelper = blobHelper;
             _mailHelper = mailHelper;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users
@@ -114,7 +112,7 @@ namespace Churchgoers.Web.Controllers
                     imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
                 }
 
-                User user = await _userHelper.AddUserAsync(model, imageId, UserType.User);
+                User user = await _userHelper.AddUserAsync(model, imageId, UserType.Member);
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "This email is already used.");
@@ -265,10 +263,10 @@ namespace Churchgoers.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userHelper.GetUserAsync(User.Identity.Name);
+                User user = await _userHelper.GetUserAsync(User.Identity.Name);
                 if (user != null)
                 {
-                    var result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    IdentityResult result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangeUser");

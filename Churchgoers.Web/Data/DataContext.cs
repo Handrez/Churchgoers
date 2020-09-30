@@ -1,5 +1,4 @@
-﻿using Churchgoers.Common.Entities;
-using Churchgoers.Web.Data.Entities;
+﻿using Churchgoers.Web.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +10,15 @@ namespace Churchgoers.Web.Data
         {
         }
 
+        public DbSet<Assistance> Assistances { get; set; }
+
         public DbSet<Church> Churches { get; set; }
 
         public DbSet<District> Districts { get; set; }
 
         public DbSet<Field> Fields { get; set; }
+
+        public DbSet<Meeting> Meetings { get; set; }
 
         public DbSet<Profession> Professions { get; set; }
 
@@ -24,7 +27,7 @@ namespace Churchgoers.Web.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Profession>()
-               .HasIndex(t => t.Name)
+               .HasIndex(p => p.Name)
                .IsUnique();
 
             modelBuilder.Entity<Field>(fie =>

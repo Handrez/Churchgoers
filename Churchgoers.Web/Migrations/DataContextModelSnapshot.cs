@@ -19,6 +19,28 @@ namespace Churchgoers.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Churchgoers.Common.Entities.Assistance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsPresent");
+
+                    b.Property<int>("MeetingId");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MeetingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Assistances");
+                });
+
             modelBuilder.Entity("Churchgoers.Common.Entities.Church", b =>
                 {
                     b.Property<int>("Id")
@@ -83,6 +105,23 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Fields");
                 });
 
+            modelBuilder.Entity("Churchgoers.Common.Entities.Meeting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChurchId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Meetings");
+                });
+
             modelBuilder.Entity("Churchgoers.Common.Entities.Profession", b =>
                 {
                     b.Property<int>("Id")
@@ -94,6 +133,9 @@ namespace Churchgoers.Web.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Professions");
                 });
@@ -286,6 +328,19 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Churchgoers.Common.Entities.Assistance", b =>
+                {
+                    b.HasOne("Churchgoers.Common.Entities.Meeting", "Meeting")
+                        .WithMany("Assistances")
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Churchgoers.Web.Data.Entities.User", "User")
+                        .WithMany("Assistances")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Churchgoers.Common.Entities.Church", b =>
                 {
                     b.HasOne("Churchgoers.Common.Entities.District", "District")
@@ -302,14 +357,22 @@ namespace Churchgoers.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Churchgoers.Common.Entities.Meeting", b =>
+                {
+                    b.HasOne("Churchgoers.Common.Entities.Church", "Church")
+                        .WithMany("Meetings")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Churchgoers.Web.Data.Entities.User", b =>
                 {
                     b.HasOne("Churchgoers.Common.Entities.Church", "Church")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("ChurchId");
 
                     b.HasOne("Churchgoers.Common.Entities.Profession", "Profession")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("ProfessionId");
                 });
 

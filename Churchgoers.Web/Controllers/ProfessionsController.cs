@@ -1,4 +1,4 @@
-﻿using Churchgoers.Common.Entities;
+﻿using Churchgoers.Web.Data.Entities;
 using Churchgoers.Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +22,9 @@ namespace Churchgoers.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Professions.ToListAsync());
+            return View(await _context.Professions
+                .Include(p => p.Users)
+                .ToListAsync());
         }
 
         public IActionResult Create()
