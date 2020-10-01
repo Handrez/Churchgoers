@@ -1,0 +1,112 @@
+﻿@model Churchgoers.Web.Data.Entities.Meeting
+
+@{ ViewData["Title"] = "Assistances"; }
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+<h2>Details</h2>
+
+<div>
+    <h4>Meeting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateLocal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateLocal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Church)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Church.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AssistancesNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AssistancesNumber)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Assistances</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.PhoneNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().IsPresent)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.ImageFullPath)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Assistances)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsPresent)
+                                </td>
+                                <td>
+                                    <img src="@item.User.ImageFullPath" style="width:80px;height:80px;border-radius:50%" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="/js/deleteDialog.js"></script>
+
+    <script type="text/javascript">$(document).ready(function () {
+            $('#MyTable').DataTable();
+
+            // Delete item
+            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Fields/DeleteDistrict/', false);
+        });</script>
+}
