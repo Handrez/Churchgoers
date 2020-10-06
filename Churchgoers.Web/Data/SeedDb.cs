@@ -30,7 +30,6 @@ namespace Churchgoers.Web.Data
             await CheckRolesAsync();
             await CheckUsersAsync();
             await CheckMeetingAsync();
-            //await CheckAssistanceAsync();
         }
 
         private async Task CheckRolesAsync()
@@ -250,66 +249,26 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("01/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member1@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member2@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member3@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member4@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member5@yopmail.com"),
-                            IsPresent = true,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member1@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member2@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member3@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member4@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member5@yopmail.com"), IsPresent = true,}
                     }
                 });
-                _context.Meetings.Add(new Meeting
-                {
-                    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 1"),
-                    Date = DateTime.Parse("09/09/2020"),
-                    Assistances = new List<Assistance>
-                    {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member1@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member2@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member3@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member4@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member5@yopmail.com"),
-                            IsPresent = false,
-                        }
-                    }
-                });
+                //_context.Meetings.Add(new Meeting
+                //{
+                //    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 1"),
+                //    Date = DateTime.Parse("09/09/2020"),
+                //    Assistances = new List<Assistance>
+                //    {
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member1@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member2@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member3@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member4@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member5@yopmail.com"), IsPresent = false,}
+                //    }
+                //});
 
                 //Iglesia 2
                 _context.Meetings.Add(new Meeting 
@@ -318,31 +277,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("02/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member6@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member7@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member8@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member9@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member10@yopmail.com"),
-                            IsPresent = false,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member6@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member7@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member8@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member9@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member10@yopmail.com"), IsPresent = false,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -351,31 +290,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("10/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member6@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member7@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member8@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member9@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member10@yopmail.com"),
-                //            IsPresent = true,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member6@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member7@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member8@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member9@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member10@yopmail.com"), IsPresent = true,}
                 //    }
                 //});
 
@@ -386,31 +305,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("03/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member11@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member12@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member13@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member14@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member15@yopmail.com"),
-                            IsPresent = true,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member11@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member12@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member13@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member14@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member15@yopmail.com"), IsPresent = true,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -419,31 +318,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("11/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member11@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member12@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member13@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member14@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member15@yopmail.com"),
-                //            IsPresent = false,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member11@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member12@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member13@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member14@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member15@yopmail.com"), IsPresent = false,}
                 //    }
                 //});
 
@@ -454,31 +333,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("04/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member16@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member17@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member18@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member19@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member20@yopmail.com"),
-                            IsPresent = false,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member16@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member17@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member18@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member19@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member20@yopmail.com"), IsPresent = false,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -487,31 +346,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("12/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member16@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member17@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member18@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member19@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member20@yopmail.com"),
-                //            IsPresent = true,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member16@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member17@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member18@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member19@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member20@yopmail.com"), IsPresent = true,}
                 //    }
                 //});
 
@@ -522,31 +361,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("05/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member21@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member22@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member23@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member24@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member25@yopmail.com"),
-                            IsPresent = true,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member21@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member22@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member23@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member24@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member25@yopmail.com"), IsPresent = true,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -555,31 +374,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("13/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member21@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member22@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member23@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member24@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member25@yopmail.com"),
-                //            IsPresent = false,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member21@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member22@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member23@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member24@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member25@yopmail.com"), IsPresent = false,}
                 //    }
                 //});
 
@@ -590,31 +389,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("06/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member26@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member27@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member28@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member29@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member30@yopmail.com"),
-                            IsPresent = false,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member26@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member27@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member28@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member29@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member30@yopmail.com"), IsPresent = false,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -623,31 +402,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("14/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member26@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member27@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member28@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member29@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member30@yopmail.com"),
-                //            IsPresent = true,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member26@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member27@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member28@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member29@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member30@yopmail.com"), IsPresent = true,}
                 //    }
                 //});
 
@@ -658,31 +417,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("07/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member31@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member32@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member33@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member34@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member35@yopmail.com"),
-                            IsPresent = true,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member31@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member32@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member33@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member34@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member35@yopmail.com"), IsPresent = true,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -691,31 +430,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("15/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member31@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member32@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member33@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member34@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member35@yopmail.com"),
-                //            IsPresent = false,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member31@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member32@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member33@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member34@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member35@yopmail.com"), IsPresent = false,}
                 //    }
                 //});
 
@@ -726,31 +445,11 @@ namespace Churchgoers.Web.Data
                     Date = DateTime.Parse("08/09/2020"),
                     Assistances = new List<Assistance>
                     {
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member36@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member37@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member38@yopmail.com"),
-                            IsPresent = false,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member39@yopmail.com"),
-                            IsPresent = true,
-                        },
-                        new Assistance
-                        {
-                            User = _context.Users.FirstOrDefault(u => u.Email == "member40@yopmail.com"),
-                            IsPresent = false,
-                        }
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member36@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member37@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member38@yopmail.com"), IsPresent = false,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member39@yopmail.com"), IsPresent = true,},
+                        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member40@yopmail.com"), IsPresent = false,}
                     }
                 });
                 //_context.Meetings.Add(new Meeting
@@ -759,31 +458,11 @@ namespace Churchgoers.Web.Data
                 //    Date = DateTime.Parse("16/09/2020"),
                 //    Assistances = new List<Assistance>
                 //    {
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member36@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member37@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member38@yopmail.com"),
-                //            IsPresent = true,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member39@yopmail.com"),
-                //            IsPresent = false,
-                //        },
-                //        new Assistance
-                //        {
-                //            User = _context.Users.FirstOrDefault(u => u.Email == "member40@yopmail.com"),
-                //            IsPresent = true,
-                //        }
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member36@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member37@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member38@yopmail.com"), IsPresent = true,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member39@yopmail.com"), IsPresent = false,},
+                //        new Assistance{User = _context.Users.FirstOrDefault(u => u.Email == "member40@yopmail.com"), IsPresent = true,}
                 //    }
                 //});
             }

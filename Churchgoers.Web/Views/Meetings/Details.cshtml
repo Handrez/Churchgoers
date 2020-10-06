@@ -30,7 +30,6 @@
         </dd>
     </dl>
 </div>
-
 <div>
     <a asp-action="Index" class="btn btn-success">Back to List</a>
 </div>
@@ -47,10 +46,7 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.FirstName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.LastName)
+                                @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.FullName)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Assistances.FirstOrDefault().User.Email)
@@ -72,10 +68,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.FirstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.LastName)
+                                    @Html.DisplayFor(modelItem => item.User.FullName)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.User.Email)

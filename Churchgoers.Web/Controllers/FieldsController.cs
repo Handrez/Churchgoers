@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vereyon.Web;
 
 namespace Churchgoers.Web.Controllers
 {
@@ -14,10 +15,12 @@ namespace Churchgoers.Web.Controllers
     public class FieldsController : Controller
     {
         private readonly DataContext _context;
+        private readonly IFlashMessage _flashMessage;
 
-        public FieldsController(DataContext context)
+        public FieldsController(DataContext context, IFlashMessage flashMessage)
         {
             _context = context;
+            _flashMessage = flashMessage;
         }
 
         //FIELDS
@@ -153,8 +156,17 @@ namespace Churchgoers.Web.Controllers
                 return NotFound();
             }
 
-            _context.Fields.Remove(field);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Fields.Remove(field);
+                await _context.SaveChangesAsync();
+                _flashMessage.Confirmation("The field was deleted.");
+            }
+            catch
+            {
+                _flashMessage.Danger("The field can't be deleted because it has related records.");
+            }
+            
             return RedirectToAction(nameof(Index));
         }
 
@@ -284,8 +296,17 @@ namespace Churchgoers.Web.Controllers
             }
 
             Field field = await _context.Fields.FirstOrDefaultAsync(f => f.Districts.FirstOrDefault(d => d.Id == district.Id) != null);
-            _context.Districts.Remove(district);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Districts.Remove(district);
+                await _context.SaveChangesAsync();
+                _flashMessage.Confirmation("The district was deleted.");
+            }
+            catch
+            {
+                _flashMessage.Danger("The district can't be deleted because it has related records.");
+            }
+            
             return RedirectToAction($"{nameof(Details)}/{field.Id}");
         }
 
@@ -436,8 +457,17 @@ namespace Churchgoers.Web.Controllers
             }
 
             District district = await _context.Districts.FirstOrDefaultAsync(d => d.Churches.FirstOrDefault(c => c.Id == church.Id) != null);
-            _context.Churches.Remove(church);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Churches.Remove(church);
+                await _context.SaveChangesAsync();
+                _flashMessage.Confirmation("The church was deleted.");
+            }
+            catch
+            {
+                _flashMessage.Danger("The church can't be deleted because it has related records.");
+            }
+
             return RedirectToAction($"{nameof(DetailsDistrict)}/{district.Id}");
         }
     }

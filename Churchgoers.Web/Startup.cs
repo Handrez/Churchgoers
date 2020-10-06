@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Vereyon.Web;
 
 namespace Churchgoers.Web
 {
@@ -78,6 +79,7 @@ namespace Churchgoers.Web
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddFlashMessage();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

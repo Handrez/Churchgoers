@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vereyon.Web;
 
 namespace Churchgoers.Web.Controllers
 {
@@ -14,10 +15,12 @@ namespace Churchgoers.Web.Controllers
     public class ProfessionsController : Controller
     {
         private readonly DataContext _context;
+        private readonly IFlashMessage _flashMessage;
 
-        public ProfessionsController(DataContext context)
+        public ProfessionsController(DataContext context, IFlashMessage flashMessage)
         {
             _context = context;
+            _flashMessage = flashMessage;
         }
 
         public async Task<IActionResult> Index()
@@ -132,10 +135,11 @@ namespace Churchgoers.Web.Controllers
             {
                 _context.Professions.Remove(profession);
                 await _context.SaveChangesAsync();
+                _flashMessage.Confirmation("The profession was deleted.");
             }
-            catch (Exception ex)
+            catch
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
+                _flashMessage.Danger("The profession can't be deleted because it has related records.");
             }
 
             return RedirectToAction(nameof(Index));

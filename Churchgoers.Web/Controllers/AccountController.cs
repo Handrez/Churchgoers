@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Vereyon.Web;
 
 namespace Churchgoers.Web.Controllers
 {
@@ -21,19 +22,27 @@ namespace Churchgoers.Web.Controllers
         private readonly ICombosHelper _combosHelper;
         private readonly IBlobHelper _blobHelper;
         private readonly IMailHelper _mailHelper;
+        private readonly IFlashMessage _flashMessage;
 
-        public AccountController(DataContext context, IUserHelper userHelper, ICombosHelper combosHelper, IBlobHelper blobHelper, IMailHelper mailHelper)
+        public AccountController(DataContext context, IUserHelper userHelper, ICombosHelper combosHelper, IBlobHelper blobHelper, IMailHelper mailHelper, IFlashMessage flashMessage)
         {
             _context = context;
             _userHelper = userHelper;
             _combosHelper = combosHelper;
             _blobHelper = blobHelper;
             _mailHelper = mailHelper;
+            _flashMessage = flashMessage;
         }
 
         [Authorize(Roles = "Admin, Teacher")]
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                User user = await _userHelper.GetUserAsync(User.Identity.Name);
+                ViewData["Members"] = UserType.Member;
+            }
+
             if (User.IsInRole("Teacher"))
             {
                 User user = await _userHelper.GetUserAsync(User.Identity.Name);
@@ -45,6 +54,19 @@ namespace Churchgoers.Web.Controllers
                 .Include(p => p.Profession)
                 .ToListAsync());
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> IndexTeachers()
+        {
+            User user = await _userHelper.GetUserAsync(User.Identity.Name);
+            ViewData["Teachers"] = UserType.Teacher;
+
+            return View(await _context.Users
+                .Include(u => u.Church)
+                .Include(p => p.Profession)
+                .ToListAsync());
+        }
+
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
@@ -77,7 +99,7 @@ namespace Churchgoers.Web.Controllers
                 User user = await _userHelper.AddUserAsync(model, imageId, UserType.Teacher);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                    _flashMessage.Danger("This email is already used.");
                     model.Fields = _combosHelper.GetComboFields();
                     model.Districts = _combosHelper.GetComboDistricts(model.FieldId);
                     model.Churches = _combosHelper.GetComboChurches(model.DistrictId);
@@ -97,7 +119,7 @@ namespace Churchgoers.Web.Controllers
                     $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
                 if (response.IsSuccess)
                 {
-                    ViewBag.Message = "The instructions to allow your user has been sent to email.";
+                    _flashMessage.Confirmation("The instructions to allow your teacher has been sent to email.");
                     return View(model);
                 }
 
@@ -137,7 +159,7 @@ namespace Churchgoers.Web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                ModelState.AddModelError(string.Empty, "Email or password incorrect.");
+                _flashMessage.Danger("Email or password incorrect.");
             }
 
             return View(model);
@@ -183,7 +205,7 @@ namespace Churchgoers.Web.Controllers
                 User user = await _userHelper.AddUserAsync(model, imageId, UserType.Member);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                    _flashMessage.Danger("This email is already used.");
                     model.Professions = _combosHelper.GetComboProfessions();
                     model.Fields = _combosHelper.GetComboFields();
                     model.Districts = _combosHelper.GetComboDistricts(model.FieldId);
@@ -203,7 +225,7 @@ namespace Churchgoers.Web.Controllers
                     $"plase click in this link:<p><a href = \"{tokenLink}\">Confirm Email</a></p>");
                 if (response.IsSuccess)
                 {
-                    ViewBag.Message = "The instructions to allow your user has been sent to email.";
+                    _flashMessage.Confirmation("The instructions to allow your user has been sent to email.");
                     return View(model);
                 }
 
@@ -337,6 +359,7 @@ namespace Churchgoers.Web.Controllers
                     IdentityResult result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
+                        //_flashMessage.Confirmation("Se cambio la contraseña");
                         return RedirectToAction("ChangeUser");
                     }
                     else
@@ -346,7 +369,7 @@ namespace Churchgoers.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "User no found.");
+                    _flashMessage.Danger("User no found.");
                 }
             }
 
@@ -388,7 +411,7 @@ namespace Churchgoers.Web.Controllers
                 User user = await _userHelper.GetUserAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "The email doesn't correspont to a registered user.");
+                    _flashMessage.Danger("The email doesn't correspont to a registered user.");
                     return View(model);
                 }
 
@@ -400,7 +423,7 @@ namespace Churchgoers.Web.Controllers
                 _mailHelper.SendMail(model.Email, "Password Reset", $"<h1>Password Reset</h1>" +
                     $"To reset the password click in this link:</br></br>" +
                     $"<a href = \"{link}\">Reset Password</a>");
-                ViewBag.Message = "The instructions to recover your password has been sent to email.";
+                _flashMessage.Confirmation("The instructions to recover your password has been sent to email.");
                 return View();
 
             }
@@ -422,15 +445,15 @@ namespace Churchgoers.Web.Controllers
                 IdentityResult result = await _userHelper.ResetPasswordAsync(user, model.Token, model.Password);
                 if (result.Succeeded)
                 {
-                    ViewBag.Message = "Password reset successful.";
+                    _flashMessage.Confirmation("Password reset successful.");
                     return View();
                 }
 
-                ViewBag.Message = "Error while resetting the password.";
+                _flashMessage.Danger("Error while resetting the password.");
                 return View(model);
             }
 
-            ViewBag.Message = "User not found.";
+            _flashMessage.Danger("User not found.");
             return View(model);
         }
     }
