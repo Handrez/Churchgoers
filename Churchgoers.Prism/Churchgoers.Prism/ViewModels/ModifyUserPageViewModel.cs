@@ -401,9 +401,9 @@ namespace Churchgoers.Prism.ViewModels
             return true;
         }
 
-        private void ChangePasswordAsync()
+        private async void ChangePasswordAsync()
         {
-            //await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
+            await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
     }
 }
