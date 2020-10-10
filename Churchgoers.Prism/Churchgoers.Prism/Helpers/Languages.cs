@@ -150,5 +150,7 @@ namespace Churchgoers.Prism.Helpers
         public static string ChangePassword => Resource.ChangePassword;
 
         public static string ChangeUserMessage => Resource.ChangeUserMessage;
+
+        public static string Save => Resource.Save;
     }
 }

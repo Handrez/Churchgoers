@@ -1,5 +1,6 @@
 ﻿using Churchgoers.Common.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace Churchgoers.Common.Responses
 {
@@ -30,5 +31,11 @@ namespace Churchgoers.Common.Responses
             : $"https://handres.blob.core.windows.net/users/{ImageId}";
 
         public UserType UserType { get; set; }
+
+        public ChurchResponse Church { get; set; }
+
+        public ProfessionResponse Profession { get; set; }
+
+        public ICollection<AssistanceResponse> Assistances { get; set; }
     }
 }

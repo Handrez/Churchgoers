@@ -318,4 +318,7 @@
     <data name="ChangeUserMessage" xml:space="preserve">
     <value>Gebruiker geüpdatet.</value>
   </data>
+    <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
 </root>

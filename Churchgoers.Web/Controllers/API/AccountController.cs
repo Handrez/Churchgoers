@@ -268,8 +268,8 @@ namespace Churchgoers.Web.Controllers.API
             user.LastName = request.LastName;
             user.Address = request.Address;
             user.PhoneNumber = request.Phone;
-            user.Church = church;
             user.Profession = profession;
+            user.Church = church;
             user.ImageId = imageId;
 
             IdentityResult respose = await _userHelper.UpdateUserAsync(user);

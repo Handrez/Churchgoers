@@ -16,13 +16,17 @@ namespace Churchgoers.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private UserResponse _user;
+        private static ChurchMasterDetailPageViewModel _instance;
 
         public ChurchMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            _instance = this;
             _navigationService = navigationService;
             LoadMenus();
             LoadUser();
         }
+
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
         public UserResponse User
         {
@@ -30,7 +34,19 @@ namespace Churchgoers.Prism.ViewModels
             set => SetProperty(ref _user, value);
         }
 
-        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+        public static ChurchMasterDetailPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
+        public void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+                User = token.User;
+            }
+        }
 
         private void LoadMenus()
         {
@@ -73,15 +89,6 @@ namespace Churchgoers.Prism.ViewModels
                     Title = m.Title,
                     IsLoginRequired = m.IsLoginRequired
                 }).ToList());
-        }
-
-        public void LoadUser()
-        {
-            if (Settings.IsLogin)
-            {
-                TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-                User = token.User;
-            }
         }
     }
 }
