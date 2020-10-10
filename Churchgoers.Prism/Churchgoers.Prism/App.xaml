@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             x:Class="Churchgoers.Prism.App">
+  <Application.Resources>
+
+        <ResourceDictionary>
+
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">https://churchgoers.azurewebsites.net</x:String>
+            <x:String x:Key="UrlNoImage">https://churchgoers.azurewebsites.net/images/noimage.png</x:String>
+
+            <!-- Colors -->
+            <Color x:Key="ColorBackground">#F2F2F2</Color>
+            <Color x:Key="ColorPrimary">#737373</Color>
+            <Color x:Key="ColorSecondary">#BFBFBF</Color>
+            <Color x:Key="ColorDanger">#D95970</Color>
+            <Color x:Key="ColorAccent">#D95970</Color>
+            <Color x:Key="ColorFont">#262626</Color>
+            <Color x:Key="ColorFontInverse">#F2F2F2</Color>
+
+            <!-- Styles -->
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorFont}" />
+            </Style>
+
+            <Style x:Key="SecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
+            </Style>
+
+            <Style x:Key="DangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
+            </Style>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+</prism:PrismApplication>

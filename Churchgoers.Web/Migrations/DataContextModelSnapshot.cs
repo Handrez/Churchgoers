@@ -19,7 +19,7 @@ namespace Churchgoers.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Assistance", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Assistance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Assistances");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Church", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Church", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,7 +64,7 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Churches");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.District", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.District", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +87,7 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Districts");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Field", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Field", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,7 +105,7 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Fields");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Meeting", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Meeting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("Meetings");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Profession", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Profession", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -328,9 +328,9 @@ namespace Churchgoers.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Assistance", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Assistance", b =>
                 {
-                    b.HasOne("Churchgoers.Common.Entities.Meeting", "Meeting")
+                    b.HasOne("Churchgoers.Web.Data.Entities.Meeting", "Meeting")
                         .WithMany("Assistances")
                         .HasForeignKey("MeetingId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -341,25 +341,25 @@ namespace Churchgoers.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Church", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Church", b =>
                 {
-                    b.HasOne("Churchgoers.Common.Entities.District", "District")
+                    b.HasOne("Churchgoers.Web.Data.Entities.District", "District")
                         .WithMany("Churches")
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.District", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.District", b =>
                 {
-                    b.HasOne("Churchgoers.Common.Entities.Field", "Field")
+                    b.HasOne("Churchgoers.Web.Data.Entities.Field", "Field")
                         .WithMany("Districts")
                         .HasForeignKey("FieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Churchgoers.Common.Entities.Meeting", b =>
+            modelBuilder.Entity("Churchgoers.Web.Data.Entities.Meeting", b =>
                 {
-                    b.HasOne("Churchgoers.Common.Entities.Church", "Church")
+                    b.HasOne("Churchgoers.Web.Data.Entities.Church", "Church")
                         .WithMany("Meetings")
                         .HasForeignKey("ChurchId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -367,11 +367,11 @@ namespace Churchgoers.Web.Migrations
 
             modelBuilder.Entity("Churchgoers.Web.Data.Entities.User", b =>
                 {
-                    b.HasOne("Churchgoers.Common.Entities.Church", "Church")
+                    b.HasOne("Churchgoers.Web.Data.Entities.Church", "Church")
                         .WithMany("Users")
                         .HasForeignKey("ChurchId");
 
-                    b.HasOne("Churchgoers.Common.Entities.Profession", "Profession")
+                    b.HasOne("Churchgoers.Web.Data.Entities.Profession", "Profession")
                         .WithMany("Users")
                         .HasForeignKey("ProfessionId");
                 });

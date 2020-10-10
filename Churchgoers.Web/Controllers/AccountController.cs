@@ -359,12 +359,12 @@ namespace Churchgoers.Web.Controllers
                     IdentityResult result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        //_flashMessage.Confirmation("Se cambio la contraseña");
+                        _flashMessage.Confirmation("Password changed successfully");
                         return RedirectToAction("ChangeUser");
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
+                        _flashMessage.Confirmation("Could not change password");
                     }
                 }
                 else

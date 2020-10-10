@@ -124,7 +124,6 @@ namespace Churchgoers.Web.Controllers.API
                 });
             }
 
-            //TODO: Traslate
             Church church = await _context.Churches.FindAsync(request.ChurchId);
             if (church == null)
             {

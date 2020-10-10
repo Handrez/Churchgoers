@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Churchgoers.Common", "Churchgoers.Common\Churchgoers.Common.csproj", "{7BD8AF5C-8FA3-49A9-9EC3-7441DC60AE56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Churchgoers.Common", "Churchgoers.Common\Churchgoers.Common.csproj", "{7BD8AF5C-8FA3-49A9-9EC3-7441DC60AE56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Churchgoers.Web", "Churchgoers.Web\Churchgoers.Web.csproj", "{80E1A33B-9EEA-4AF8-9AD1-9D15DFC3949F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Churchgoers.Web", "Churchgoers.Web\Churchgoers.Web.csproj", "{80E1A33B-9EEA-4AF8-9AD1-9D15DFC3949F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Churchgoers.Prism", "Churchgoers.Prism\Churchgoers.Prism\Churchgoers.Prism.csproj", "{ACCE77F1-79BB-424E-ABDE-BD10651D46AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Churchgoers.Prism.Android", "Churchgoers.Prism\Churchgoers.Prism.Android\Churchgoers.Prism.Android.csproj", "{604B9370-C0BD-4AA3-B377-528E15962966}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,16 @@ Global
 		{80E1A33B-9EEA-4AF8-9AD1-9D15DFC3949F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E1A33B-9EEA-4AF8-9AD1-9D15DFC3949F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80E1A33B-9EEA-4AF8-9AD1-9D15DFC3949F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCE77F1-79BB-424E-ABDE-BD10651D46AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCE77F1-79BB-424E-ABDE-BD10651D46AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCE77F1-79BB-424E-ABDE-BD10651D46AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCE77F1-79BB-424E-ABDE-BD10651D46AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{604B9370-C0BD-4AA3-B377-528E15962966}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
