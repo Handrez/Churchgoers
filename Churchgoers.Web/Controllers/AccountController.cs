@@ -52,6 +52,7 @@ namespace Churchgoers.Web.Controllers
             return View(await _context.Users
                 .Include(u => u.Church)
                 .Include(p => p.Profession)
+                .Where(p => p.UserType == UserType.Member)
                 .ToListAsync());
         }
 

@@ -13,18 +13,20 @@ using System.Threading.Tasks;
 
 namespace Churchgoers.Web.Controllers.API
 {
-    [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
     [Route("api/[controller]")]
     public class MeetingsController : ControllerBase
     {
-        private readonly IUserHelper _userHelper;
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
+        private readonly IConverterHelper _converterHelper;
 
-        public MeetingsController(IUserHelper userHelper, DataContext context)
+        public MeetingsController(DataContext context, IUserHelper userHelper, IConverterHelper converterHelper)
         {
-            _userHelper = userHelper;
             _context = context;
+            _userHelper = userHelper;
+            _converterHelper = converterHelper;
         }
 
         [HttpGet]
@@ -40,24 +42,13 @@ namespace Churchgoers.Web.Controllers.API
             List<Meeting> meetings = await _context.Meetings
                 .Include(m => m.Church)
                 .Include(m => m.Assistances)
-                .ThenInclude(u => u.User)
-                .ThenInclude(p => p.Profession)
+                .ThenInclude(a => a.User)
+                .ThenInclude(u => u.Profession)
                 .Where(m => m.Church.Id == user.Church.Id)
                 .ToListAsync();
 
-            return Ok(meetings);
+            return Ok(_converterHelper.ToMeetingResponse(meetings));
         }
-
-
-
-
-
-
-
-
-
-
-
 
         [HttpPost]
         [Route("{date}")]
@@ -91,9 +82,9 @@ namespace Churchgoers.Web.Controllers.API
                 .ThenInclude(u => u.User)
                 .ThenInclude(p => p.Profession)
                 .FirstOrDefaultAsync(m => m.Date.Year == date.Year &&
-                                     m.Date.Month == date.Month &&
-                                     m.Date.Day == date.Day &&
-                                     m.Church.Id == user.Church.Id);
+                                          m.Date.Month == date.Month &&
+                                          m.Date.Day == date.Day &&
+                                          m.Church.Id == user.Church.Id);
 
             bool isNew = false;
             if (meeting == null)
@@ -114,7 +105,7 @@ namespace Churchgoers.Web.Controllers.API
                 {
                     meeting.Assistances.Add(new Assistance
                     {
-                        User = user
+                        User = users
                     });
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Churchgoers.Common.Requests;
 using Churchgoers.Common.Responses;
+using System;
 using System.Threading.Tasks;
 
 namespace Churchgoers.Common.Services
@@ -7,6 +8,8 @@ namespace Churchgoers.Common.Services
     public interface IApiService
     {
         Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller);
+
+        Task<Response> GetList2Async<T>(string urlBase, string servicePrefix, string controller, string token);
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
 
@@ -17,5 +20,9 @@ namespace Churchgoers.Common.Services
         Task<Response> ModifyUserAsync(string urlBase, string servicePrefix, string controller, UserRequest userRequest, string token);
 
         Task<Response> ChangePasswordAsync(string urlBase, string servicePrefix, string controller, ChangePasswordRequest changePasswordRequest, string token);
+
+        Task<Response> PostAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token);
+
+        Task<Response> PutAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token);
     }
 }

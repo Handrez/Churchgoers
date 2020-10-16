@@ -119,7 +119,7 @@ namespace Churchgoers.Prism.ViewModels
 
             if (string.IsNullOrEmpty(_pageReturn))
             {
-                await _navigationService.NavigateAsync($"/{nameof(ChurchMasterDetailPage)}/NavigationPage/{nameof(IndexPage)}");
+                await _navigationService.NavigateAsync($"/{nameof(ChurchMasterDetailPage)}/NavigationPage/{nameof(ShowMembersPage)}");
             }
             else
             {

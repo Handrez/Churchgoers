@@ -11,6 +11,7 @@ namespace Churchgoers.Web.Data.Entities
         public User User { get; set; }
 
         [Required]
+        [JsonIgnore]
         public Meeting Meeting { get; set; }
 
         [Display(Name = "Is Present")]

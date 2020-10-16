@@ -160,7 +160,7 @@
     <value>uw wachtwoord vergeten?</value>
   </data>
     <data name="Register" xml:space="preserve">
-    <value>Registreer nieuwe gebruiker</value>
+    <value>Registreer een nieuw lid</value>
   </data>
     <data name="LoginError" xml:space="preserve">
     <value>E-mailadres of wachtwoord verkeerd</value>
@@ -173,6 +173,15 @@
   </data>
     <data name="SearchMember" xml:space="preserve">
     <value>Zoek een lid...</value>
+  </data>
+    <data name="Members" xml:space="preserve">
+    <value>Leden</value>
+  </data>
+    <data name="SearchMeeting" xml:space="preserve">
+    <value>Zoek een bijeenkomst...</value>
+  </data>
+    <data name="Meetings" xml:space="preserve">
+    <value>Vergaderingen</value>
   </data>
     <data name="LoginFirstMessage" xml:space="preserve">
     <value>U moet ingelogd zijn om deze actie te voltooien. U kunt hieronder inloggen of registreren als gebruiker.</value>
@@ -321,6 +330,9 @@
     <data name="Save" xml:space="preserve">
     <value>Opslaan</value>
   </data>
+    <data name="Update" xml:space="preserve">
+    <value>Bijwerken</value>
+  </data>
     <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Bevestig nieuw wachtwoord</value>
   </data>
@@ -356,5 +368,14 @@
   </data>
     <data name="ChangePassworrdMessage" xml:space="preserve">
     <value>Het wachtwoord is succesvol gewijzigd.</value>
+  </data>
+    <data name="ErrorRegisterMember" xml:space="preserve">
+    <value>De gebruiker kan deze functie niet openen.</value>
+  </data>
+    <data name="NewMeeting" xml:space="preserve">
+    <value>Nieuwe vergadering</value>
+  </data>
+    <data name="DateTimeError" xml:space="preserve">
+    <value>U moet een geldige datum selecteren.</value>
   </data>
 </root>

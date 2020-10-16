@@ -244,8 +244,8 @@ namespace Churchgoers.Web.Data
             {
                 //Iglesia 1
                 _context.Meetings.Add(new Meeting
-                { 
-                    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 1"), 
+                {
+                    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 1"),
                     Date = DateTime.Parse("01/09/2020"),
                     Assistances = new List<Assistance>
                     {
@@ -271,9 +271,9 @@ namespace Churchgoers.Web.Data
                 //});
 
                 //Iglesia 2
-                _context.Meetings.Add(new Meeting 
-                { 
-                    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 2"), 
+                _context.Meetings.Add(new Meeting
+                {
+                    Church = _context.Churches.FirstOrDefault(c => c.Name == "Iglesia 2"),
                     Date = DateTime.Parse("02/09/2020"),
                     Assistances = new List<Assistance>
                     {

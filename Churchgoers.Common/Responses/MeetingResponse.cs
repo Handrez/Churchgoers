@@ -7,6 +7,8 @@ namespace Churchgoers.Common.Responses
     {
         public int Id { get; set; }
 
+        public ChurchResponse Church { get; set; }
+
         public DateTime Date { get; set; }
 
         public DateTime DateLocal => Date.ToLocalTime();

@@ -14,5 +14,4 @@ namespace Churchgoers.Common.Models
 
         public bool IsLoginRequired { get; set; }
     }
-
 }

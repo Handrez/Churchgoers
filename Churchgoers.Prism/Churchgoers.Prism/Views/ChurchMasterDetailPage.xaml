@@ -37,6 +37,8 @@
                 <Label FontAttributes="Bold"
                        FontSize="Large"
                        Text="{Binding User.FullName}"/>
+                <Label FontAttributes="Italic"
+                       Text="{Binding User.UserType}"/>
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"
                 	      HasUnevenRows="True"

@@ -10,7 +10,7 @@ namespace Churchgoers.Web.Controllers.API
         private readonly DataContext _context;
 
         public ProfessionsController(DataContext context)
-        {
+        { 
             _context = context;
         }
 

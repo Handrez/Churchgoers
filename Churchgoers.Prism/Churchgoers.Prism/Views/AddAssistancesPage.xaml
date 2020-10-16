@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:i18n="clr-namespace:Churchgoers.Prism.Helpers"
+             x:Class="Churchgoers.Prism.Views.AddAssistancesPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title="{Binding Title}">
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+
+            <syncfusion:SfCalendar x:Name="calendar" 
+                                   EnableDatesInPast="False"
+                                   SelectionMode="SingleSelection"
+                                   SelectedDate="{Binding Date, Mode=TwoWay}">
+                <syncfusion:SfCalendar.MonthViewSettings>
+                    <syncfusion:MonthViewSettings BorderColor="Black"
+                                                  TodaySelectionBackgroundColor="#D95970"
+                                                  DateSelectionColor="#D95970"
+                                                  TodayBorderColor="Black"
+                                                  HeaderBackgroundColor="#F2F2F2"
+                                                  HeaderTextColor="Black"/>
+                    </syncfusion:SfCalendar.MonthViewSettings>
+            </syncfusion:SfCalendar>
+
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand">
+                <Button Command="{Binding SaveCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate Save}"/>
+            </StackLayout>
+        </StackLayout>
+        <busyindicator:SfBusyIndicator AnimationType="MovieTimer" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorBackground}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorAccent}"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="{i18n:Translate Loading}"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </AbsoluteLayout>
+</ContentPage>

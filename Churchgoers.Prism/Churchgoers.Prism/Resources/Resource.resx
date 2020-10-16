@@ -140,7 +140,7 @@
 	<value>Forgot your password?</value>
   </data>
 	<data name="Register" xml:space="preserve">
-	<value>Register New User</value>
+	<value>Register New Member</value>
   </data>
 	<data name="LoginError" xml:space="preserve">
 	<value>Email or password wrong</value>
@@ -153,6 +153,15 @@
   </data>
 	<data name="SearchMember" xml:space="preserve">
 	<value>Search a member...</value>
+  </data>
+	<data name="Members" xml:space="preserve">
+	<value>Members</value>
+  </data>
+	<data name="SearchMeeting" xml:space="preserve">
+	<value>Search a meeting...</value>
+  </data>
+	<data name="Meetings" xml:space="preserve">
+	<value>Meetings</value>
   </data>
 	<data name="LoginFirstMessage" xml:space="preserve">
 	<value>You must be logged in to complete this action. You can login or register as a user below.</value>
@@ -301,6 +310,9 @@
 	<data name="Save" xml:space="preserve">
 	<value>Save</value>
   </data>
+	<data name="Update" xml:space="preserve">
+	<value>Update</value>
+  </data>
 	<data name="ConfirmNewPassword" xml:space="preserve">
 	<value>Confirm new password</value>
   </data>
@@ -336,5 +348,14 @@
   </data>
 	<data name="ChangePassworrdMessage" xml:space="preserve">
 	<value>The password was changed successfully.</value>
+  </data>
+	<data name="ErrorRegisterMember" xml:space="preserve">
+	<value>User cannot enter this function.</value>
+  </data>
+	<data name="NewMeeting" xml:space="preserve">
+	<value>New Meeting</value>
+  </data>
+	<data name="DateTimeError" xml:space="preserve">
+	<value>You must select a valid date.</value>
   </data>
 </root>

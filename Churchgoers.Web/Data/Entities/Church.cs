@@ -24,7 +24,6 @@ namespace Churchgoers.Web.Data.Entities
         [JsonIgnore]
         public ICollection<User> Users { get; set; }
 
-        [JsonIgnore]
         public ICollection<Meeting> Meetings { get; set; }
 
         [Display(Name = "# Users")]

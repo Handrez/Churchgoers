@@ -23,7 +23,7 @@ namespace Churchgoers.Prism
         {
             SyncfusionLicenseProvider.RegisterLicense("MzMxOTM5QDMxMzgyZTMzMmUzMFBCQTZnUzJYM2Y2VHpuUi9hWFJNajdXYUUxbEZ4YWNYRzg1eXNXNWd1MU09");
             InitializeComponent();
-            await NavigationService.NavigateAsync($"{nameof(ChurchMasterDetailPage)}/NavigationPage/{nameof(LoginPage)}");
+            await NavigationService.NavigateAsync($"NavigationPage/{nameof(LoginPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -39,10 +39,10 @@ namespace Churchgoers.Prism
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<ShowMembersPage, ShowMembersPageViewModel>();
             containerRegistry.RegisterForNavigation<ShowMeetingsPage, ShowMeetingsPageViewModel>();
-            containerRegistry.RegisterForNavigation<IndexPage, IndexPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddAssistancesPage, AddAssistancesPageViewModel>();
         }
     }
 }

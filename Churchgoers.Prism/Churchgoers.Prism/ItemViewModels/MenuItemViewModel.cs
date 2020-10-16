@@ -25,6 +25,9 @@ namespace Churchgoers.Prism.ItemViewModels
             {
                 Settings.IsLogin = false;
                 Settings.Token = null;
+
+                await _navigationService.NavigateAsync($"/NavigationPage/{PageName}");
+                return;
             }
 
             if (IsLoginRequired && !Settings.IsLogin)

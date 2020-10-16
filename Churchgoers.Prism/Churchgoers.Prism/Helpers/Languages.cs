@@ -55,6 +55,12 @@ namespace Churchgoers.Prism.Helpers
 
         public static string SearchMember => Resource.SearchMember;
 
+        public static string Members => Resource.Members;
+
+        public static string SearchMeeting => Resource.SearchMeeting;
+
+        public static string Meetings => Resource.Meetings;
+
         public static string LoginFirstMessage => Resource.LoginFirstMessage;
 
         public static string Document => Resource.Document;
@@ -153,6 +159,8 @@ namespace Churchgoers.Prism.Helpers
 
         public static string Save => Resource.Save;
 
+        public static string Update => Resource.Update;
+
         public static string ConfirmNewPassword => Resource.ConfirmNewPassword;
 
         public static string ConfirmNewPasswordError1 => Resource.ConfirmNewPasswordError1;
@@ -176,5 +184,11 @@ namespace Churchgoers.Prism.Helpers
         public static string Error005 => Resource.Error005;
 
         public static string ChangePassworrdMessage => Resource.ChangePassworrdMessage;
+
+        public static string ErrorRegisterMember => Resource.ErrorRegisterMember;
+
+        public static string NewMeeting => Resource.NewMeeting;
+
+        public static string DateTimeError => Resource.DateTimeError;
     }
 }

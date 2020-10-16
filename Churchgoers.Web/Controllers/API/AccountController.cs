@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -98,6 +100,25 @@ namespace Churchgoers.Web.Controllers.API
             }
 
             return Ok(user);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet]
+        [Route("Members")]
+        public async Task<IActionResult> GetMembers()
+        {
+            string email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                return NotFound("Error001");
+            }
+
+            return Ok(_context.Users
+                .Include(c => c.Church)
+                .Include(p => p.Profession)
+                .Where(u => u.Church.Id == user.Church.Id && u.UserType == UserType.Member)
+                .OrderBy(u => u.Email));
         }
 
         [HttpPost]

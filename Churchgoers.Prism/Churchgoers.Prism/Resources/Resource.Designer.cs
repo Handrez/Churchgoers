@@ -232,6 +232,15 @@ namespace Churchgoers.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a valid date..
+        /// </summary>
+        public static string DateTimeError {
+            get {
+                return ResourceManager.GetString("DateTimeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to District.
         /// </summary>
         public static string District {
@@ -363,6 +372,15 @@ namespace Churchgoers.Prism.Resources {
         public static string Error006 {
             get {
                 return ResourceManager.GetString("Error006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User cannot enter this function..
+        /// </summary>
+        public static string ErrorRegisterMember {
+            get {
+                return ResourceManager.GetString("ErrorRegisterMember", resourceCulture);
             }
         }
         
@@ -520,11 +538,38 @@ namespace Churchgoers.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meetings.
+        /// </summary>
+        public static string Meetings {
+            get {
+                return ResourceManager.GetString("Meetings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify user.
         /// </summary>
         public static string ModifyUser {
             get {
                 return ResourceManager.GetString("ModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Meeting.
+        /// </summary>
+        public static string NewMeeting {
+            get {
+                return ResourceManager.GetString("NewMeeting", resourceCulture);
             }
         }
         
@@ -727,7 +772,7 @@ namespace Churchgoers.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register New User.
+        ///   Looks up a localized string similar to Register New Member.
         /// </summary>
         public static string Register {
             get {
@@ -750,6 +795,15 @@ namespace Churchgoers.Prism.Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search a meeting....
+        /// </summary>
+        public static string SearchMeeting {
+            get {
+                return ResourceManager.GetString("SearchMeeting", resourceCulture);
             }
         }
         
@@ -777,6 +831,15 @@ namespace Churchgoers.Prism.Resources {
         public static string ShowMembers {
             get {
                 return ResourceManager.GetString("ShowMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
     }

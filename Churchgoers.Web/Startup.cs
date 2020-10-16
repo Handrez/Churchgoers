@@ -79,6 +79,7 @@ namespace Churchgoers.Web
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddFlashMessage();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

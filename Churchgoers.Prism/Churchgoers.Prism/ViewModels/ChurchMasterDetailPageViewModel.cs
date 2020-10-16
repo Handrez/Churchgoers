@@ -51,35 +51,42 @@ namespace Churchgoers.Prism.ViewModels
         private void LoadMenus()
         {
             List<Menu> menus = new List<Menu>
-        {
-            new Menu
             {
-                Icon = "ic_people",
-                PageName = $"{nameof(ShowMembersPage)}",
-                Title = Languages.ShowMembers,
-                IsLoginRequired = true
-            },
-            new Menu
-            {
-                Icon = "ic_list_alt",
-                PageName = $"{nameof(ShowMeetingsPage)}",
-                Title = Languages.ShowMeetings,
-                IsLoginRequired = true
-            },
-            new Menu
-            {
-                Icon = "ic_action_person",
-                PageName = $"{nameof(ModifyUserPage)}",
-                Title = Languages.ModifyUser,
-                IsLoginRequired = true
-            },
-            new Menu
-            {
-                Icon = "ic_action_exit_to_app",
-                PageName = $"{nameof(LoginPage)}",
-                Title = Settings.IsLogin ? Languages.Logout : Languages.Login
-            }
-        };
+                new Menu
+                {
+                    Icon = "ic_people",
+                    PageName = $"{nameof(ShowMembersPage)}",
+                    Title = Languages.ShowMembers,
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
+                    Icon = "ic_list_alt",
+                    PageName = $"{nameof(ShowMeetingsPage)}",
+                    Title = Languages.ShowMeetings,
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
+                    Icon = "ic_person_add",
+                    PageName = $"{nameof(RegisterPage)}",
+                    Title = Languages.Register,
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
+                    Icon = "ic_person",
+                    PageName = $"{nameof(ModifyUserPage)}",
+                    Title = Languages.ModifyUser,
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
+                    Icon = "ic_exit_to_app",
+                    PageName = $"{nameof(LoginPage)}",
+                    Title = Settings.IsLogin ? Languages.Logout : Languages.Login
+                }
+            };
 
             Menus = new ObservableCollection<MenuItemViewModel>(
                 menus.Select(m => new MenuItemViewModel(_navigationService)
