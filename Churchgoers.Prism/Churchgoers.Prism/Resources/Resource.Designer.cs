@@ -97,6 +97,24 @@ namespace Churchgoers.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assistance.
+        /// </summary>
+        public static string Assistance {
+            get {
+                return ResourceManager.GetString("Assistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assists saved successfully..
+        /// </summary>
+        public static string AssistanceMessage {
+            get {
+                return ResourceManager.GetString("AssistanceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -376,6 +394,15 @@ namespace Churchgoers.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meeting no found..
+        /// </summary>
+        public static string Error007 {
+            get {
+                return ResourceManager.GetString("Error007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User cannot enter this function..
         /// </summary>
         public static string ErrorRegisterMember {
@@ -534,6 +561,15 @@ namespace Churchgoers.Prism.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meeting created successfully..
+        /// </summary>
+        public static string MeetingMessage {
+            get {
+                return ResourceManager.GetString("MeetingMessage", resourceCulture);
             }
         }
         
@@ -786,6 +822,15 @@ namespace Churchgoers.Prism.Resources {
         public static string RegisterMessge {
             get {
                 return ResourceManager.GetString("RegisterMessge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return.
+        /// </summary>
+        public static string Return {
+            get {
+                return ResourceManager.GetString("Return", resourceCulture);
             }
         }
         

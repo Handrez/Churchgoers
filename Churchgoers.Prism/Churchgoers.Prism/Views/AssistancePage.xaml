@@ -2,53 +2,68 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:i18n="clr-namespace:Churchgoers.Prism.Helpers"
-             x:Class="Churchgoers.Prism.Views.ShowMeetingsPage"
+             x:Class="Churchgoers.Prism.Views.AssistancePage"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="ic_add_circle" Command="{Binding AddMeetingCommand}"/>
-    </ContentPage.ToolbarItems>
 
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <SearchBar Placeholder="{i18n:Translate SearchMeeting}"
+            <SearchBar Placeholder="{i18n:Translate SearchMember}"
                 SearchCommand="{Binding SearchCommand}"
                 Text="{Binding Search}"/>
-
-            <CollectionView ItemsSource="{Binding Meetings}">
+            <CollectionView ItemsSource="{Binding Assistances}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectMeetingCommand}"/>
-                            </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage Grid.Column="0"
+                                                        Aspect="AspectFill"
+                                                        Source="{Binding User.ImageFullPath}" 
+                                                        CacheDuration= "50"
+                                                        Margin="5"
+                                                        RetryCount= "3"
+                                                        RetryDelay= "600"
+                                                        WidthRequest="80">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
                             <StackLayout Grid.Column="1"
                                          VerticalOptions="Center">
-                                <Label Text="{Binding Date}" 
+                                <Label Text="{Binding User.FullName}" 
                                        FontAttributes="Bold"
                                        FontSize="Medium"
-                                       LineBreakMode="TailTruncation" />
+                                       LineBreakMode="TailTruncation"/>
                             </StackLayout>
-                            <Image Grid.Column="2" 
-                                   Source="ic_more_vert"/>
+                            <CheckBox
+                                Grid.Column="2"
+                                IsChecked="{Binding IsPresent}"
+                                HorizontalOptions="End"
+                                HeightRequest="50"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand">
+                <Button Command="{Binding SaveCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate Save}"/>
+            </StackLayout>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="MovieTimer" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

@@ -6,7 +6,7 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:i18n="clr-namespace:Churchgoers.Prism.Helpers"
-             x:Class="Churchgoers.Prism.Views.AddAssistancesPage"
+             x:Class="Churchgoers.Prism.Views.AddMeetingsPage"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
 
@@ -17,7 +17,7 @@
 
             <syncfusion:SfCalendar x:Name="calendar" 
                                    EnableDatesInPast="False"
-                                   SelectionMode="SingleSelection"
+                                   SelectionMode="SingleSelection"                               
                                    SelectedDate="{Binding Date, Mode=TwoWay}">
                 <syncfusion:SfCalendar.MonthViewSettings>
                     <syncfusion:MonthViewSettings BorderColor="Black"
@@ -26,7 +26,7 @@
                                                   TodayBorderColor="Black"
                                                   HeaderBackgroundColor="#F2F2F2"
                                                   HeaderTextColor="Black"/>
-                    </syncfusion:SfCalendar.MonthViewSettings>
+                </syncfusion:SfCalendar.MonthViewSettings>
             </syncfusion:SfCalendar>
 
             <StackLayout Orientation="Horizontal"
@@ -48,4 +48,5 @@
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
     </AbsoluteLayout>
+
 </ContentPage>

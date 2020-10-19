@@ -38,7 +38,7 @@ namespace Churchgoers.Prism.ItemViewModels
                     { "pageReturn", PageName }
                 };
 
-                await _navigationService.NavigateAsync($"/{nameof(ChurchMasterDetailPage)}/NavigationPage/{nameof(LoginPage)}", parameters);
+                await _navigationService.NavigateAsync($"/NavigationPage/{nameof(LoginPage)}", parameters);
             }
             else
             {

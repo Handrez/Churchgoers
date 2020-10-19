@@ -68,13 +68,6 @@ namespace Churchgoers.Prism.ViewModels
                 },
                 new Menu
                 {
-                    Icon = "ic_person_add",
-                    PageName = $"{nameof(RegisterPage)}",
-                    Title = Languages.Register,
-                    IsLoginRequired = true
-                },
-                new Menu
-                {
                     Icon = "ic_person",
                     PageName = $"{nameof(ModifyUserPage)}",
                     Title = Languages.ModifyUser,

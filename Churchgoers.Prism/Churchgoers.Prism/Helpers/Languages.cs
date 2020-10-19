@@ -133,6 +133,8 @@ namespace Churchgoers.Prism.Helpers
 
         public static string Error006 => Resource.Error006;
 
+        public static string Error007 => Resource.Error007;
+
         public static string Ok => Resource.Ok;
 
         public static string RegisterMessge => Resource.RegisterMessge;
@@ -190,5 +192,13 @@ namespace Churchgoers.Prism.Helpers
         public static string NewMeeting => Resource.NewMeeting;
 
         public static string DateTimeError => Resource.DateTimeError;
+
+        public static string Return => Resource.Return;
+
+        public static string Assistance => Resource.Assistance;
+
+        public static string AssistanceMessage => Resource.AssistanceMessage;
+
+        public static string MeetingMessage => Resource.MeetingMessage;
     }
 }

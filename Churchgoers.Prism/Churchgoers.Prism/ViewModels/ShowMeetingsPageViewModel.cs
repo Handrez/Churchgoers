@@ -1,7 +1,9 @@
-﻿using Churchgoers.Common.Helpers;
+﻿using Churchgoers.Common.Enums;
+using Churchgoers.Common.Helpers;
 using Churchgoers.Common.Responses;
 using Churchgoers.Common.Services;
 using Churchgoers.Prism.Helpers;
+using Churchgoers.Prism.ItemViewModels;
 using Churchgoers.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -19,7 +21,8 @@ namespace Churchgoers.Prism.ViewModels
         private readonly IApiService _apiService;
         private string _search;
         private bool _isRunning;
-        private ObservableCollection<MeetingResponse> _meetings;
+        private TokenResponse _token;
+        private ObservableCollection<MeetingItemViewModel> _meetings;
         private List<MeetingResponse> _myMeetings;
         private DelegateCommand _searchCommand;
         private DelegateCommand _addMeetingCommand;
@@ -28,6 +31,7 @@ namespace Churchgoers.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            _token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             Title = Languages.ShowMeetings;
             LoadMeetingsAsync();
         }
@@ -52,7 +56,7 @@ namespace Churchgoers.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        public ObservableCollection<MeetingResponse> Meetings
+        public ObservableCollection<MeetingItemViewModel> Meetings
         {
             get => _meetings;
             set => SetProperty(ref _meetings, value);
@@ -67,9 +71,8 @@ namespace Churchgoers.Prism.ViewModels
             }
 
             IsRunning = true;
-            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             string url = App.Current.Resources["UrlAPI"].ToString();
-            Response response = await _apiService.GetList2Async<MeetingResponse>(url, "/api", "/Meetings", token.Token);
+            Response response = await _apiService.GetList2Async<MeetingResponse>(url, "/api", "/Meetings", _token.Token);
             IsRunning = false;
 
             if (!response.IsSuccess)
@@ -86,18 +89,37 @@ namespace Churchgoers.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Search))
             {
-                Meetings = new ObservableCollection<MeetingResponse>(_myMeetings);
+
+                Meetings = new ObservableCollection<MeetingItemViewModel>(_myMeetings.Select(m => new MeetingItemViewModel(_navigationService)
+                {
+                    Church = m.Church,
+                    Date = m.Date,
+                    Assistances = m.Assistances
+                }).ToList());
+
             }
             else
             {
-                Meetings = new ObservableCollection<MeetingResponse>(_myMeetings
-                    .Where(p => p.Date.ToString().ToLower().Contains(Search.ToLower())));
+                Meetings = new ObservableCollection<MeetingItemViewModel>(_myMeetings.Select(m => new MeetingItemViewModel(_navigationService)
+                {
+                    Church = m.Church,
+                    Date = m.Date,
+                    Assistances = m.Assistances
+                }).Where(p => p.Date.ToString().ToLower().Contains(Search.ToLower())).ToList());
+
             }
         }
 
         private async void AddMeetingCommandAsync()
         {
-            await _navigationService.NavigateAsync($"{nameof(AddAssistancesPage)}");
+            if (_token.User.UserType == UserType.Teacher)
+            {
+                await _navigationService.NavigateAsync($"{nameof(AddMeetingsPage)}");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ErrorRegisterMember, Languages.Accept);
+            }
         }
     }
 }

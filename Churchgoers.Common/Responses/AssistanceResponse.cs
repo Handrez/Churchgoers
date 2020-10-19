@@ -6,6 +6,8 @@
 
         public UserResponse User { get; set; }
 
+        public MeetingResponse Meeting { get; set; }
+
         public bool IsPresent { get; set; }
     }
 }

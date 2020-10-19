@@ -21,8 +21,8 @@ namespace Churchgoers.Common.Services
 
         Task<Response> ChangePasswordAsync(string urlBase, string servicePrefix, string controller, ChangePasswordRequest changePasswordRequest, string token);
 
-        Task<Response> PostAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token);
+        Task<Response> PostAsync(string urlBase, string servicePrefix, string controller, DateTime Date, string token);
 
-        Task<Response> PutAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token);
+        Task<Response> PutAsync(string urlBase, string servicePrefix, string controller, MeetingRequest meetingRequest, string token);
     }
 }

@@ -271,6 +271,9 @@
 	<data name="Error006" xml:space="preserve">
 	<value>Profession no found.</value>
   </data>
+	<data name="Error007" xml:space="preserve">
+	<value>Meeting no found.</value>
+  </data>
 	<data name="Ok" xml:space="preserve">
 	<value>Ok</value>
   </data>
@@ -357,5 +360,17 @@
   </data>
 	<data name="DateTimeError" xml:space="preserve">
 	<value>You must select a valid date.</value>
+  </data>
+	<data name="Return" xml:space="preserve">
+	<value>Return</value>
+  </data>
+	<data name="Assistance" xml:space="preserve">
+	<value>Assistance</value>
+  </data>
+	<data name="AssistanceMessage" xml:space="preserve">
+	<value>Assists saved successfully.</value>
+  </data>
+	<data name="MeetingMessage" xml:space="preserve">
+	<value>Meeting created successfully.</value>
   </data>
 </root>

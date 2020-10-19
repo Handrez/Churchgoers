@@ -1,4 +1,5 @@
-﻿using Churchgoers.Web.Data;
+﻿using Churchgoers.Common.Requests;
+using Churchgoers.Web.Data;
 using Churchgoers.Web.Data.Entities;
 using Churchgoers.Web.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -45,6 +46,7 @@ namespace Churchgoers.Web.Controllers.API
                 .ThenInclude(a => a.User)
                 .ThenInclude(u => u.Profession)
                 .Where(m => m.Church.Id == user.Church.Id)
+                .OrderByDescending(m => m.Date)
                 .ToListAsync();
 
             return Ok(_converterHelper.ToMeetingResponse(meetings));
@@ -120,7 +122,60 @@ namespace Churchgoers.Web.Controllers.API
             }
 
             await _context.SaveChangesAsync();
-            return Ok(meeting);
+            return Ok(_converterHelper.ToMeetingResponse(meeting));
+        
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> PutMeeting([FromBody] MeetingRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            string email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                return NotFound("Error001");
+            }
+
+            Meeting meeting = await _context.Meetings
+                 .Include(m => m.Assistances)
+                 .ThenInclude(a => a.User)
+                 .ThenInclude(u => u.Church)
+                 .Include(m => m.Assistances)
+                 .ThenInclude(a => a.User)
+                 .ThenInclude(u => u.Profession)
+                 .FirstOrDefaultAsync(m => m.Date.Year == request.Date.Year &&
+                                          m.Date.Month == request.Date.Month &&
+                                          m.Date.Day == request.Date.Day &&
+                                          m.Church.Id == user.Church.Id);
+
+            if (meeting == null)
+            {
+                //TODO:Pendiente para traducir
+                return NotFound("Error006");
+            }
+
+            bool i = request.Assistances
+            .Where(assis => assis.Id == 1)
+            .Select(assis => assis.IsPresent)
+            .FirstOrDefault();
+
+            foreach (Assistance assistance in meeting.Assistances)
+            {
+                assistance.IsPresent = request.Assistances
+                .Where(a => a.Id == assistance.Id)
+                .Select(a => a.IsPresent)
+                .FirstOrDefault();
+            }
+
+            _context.Meetings.Update(meeting);
+
+            await _context.SaveChangesAsync();
+            return Ok(_converterHelper.ToMeetingResponse(meeting));
         }
     }
 }

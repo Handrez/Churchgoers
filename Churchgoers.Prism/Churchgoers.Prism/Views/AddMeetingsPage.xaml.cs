@@ -2,9 +2,9 @@
 
 namespace Churchgoers.Prism.Views
 {
-    public partial class AddAssistancesPage : ContentPage
+    public partial class AddMeetingsPage : ContentPage
     {
-        public AddAssistancesPage()
+        public AddMeetingsPage()
         {
             InitializeComponent();
         }

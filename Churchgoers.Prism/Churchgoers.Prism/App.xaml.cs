@@ -42,7 +42,8 @@ namespace Churchgoers.Prism
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddAssistancesPage, AddAssistancesPageViewModel>();
+            containerRegistry.RegisterForNavigation<AssistancePage, AssistancePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddMeetingsPage, AddMeetingsPageViewModel>();
         }
     }
 }

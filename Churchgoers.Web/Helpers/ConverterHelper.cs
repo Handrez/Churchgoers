@@ -92,5 +92,21 @@ namespace Churchgoers.Web.Helpers
             }).ToList();
         }
 
+        public MeetingResponse ToMeetingResponse(Meeting meeting)
+        {
+            return (new MeetingResponse
+            {
+                Assistances = meeting.Assistances.Select(a => new AssistanceResponse
+                {
+                    Id = a.Id,
+                    IsPresent = a.IsPresent,
+                    User = ToUserResponse(a.User)
+
+                }).ToList(),
+                Church = ToChurchResponse(meeting.Church),
+                Date = meeting.Date,
+                Id = meeting.Id
+            });
+        }
     }
 }

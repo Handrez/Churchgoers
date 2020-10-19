@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace Churchgoers.Prism.ViewModels
 {
-    public class AddAssistancesPageViewModel : ViewModelBase
+    public class AddMeetingsPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
@@ -21,7 +21,7 @@ namespace Churchgoers.Prism.ViewModels
         private DelegateCommand _saveCommand;
 
 
-        public AddAssistancesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
+        public AddMeetingsPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             _apiService = apiService;
             IsEnabled = true;
@@ -50,12 +50,6 @@ namespace Churchgoers.Prism.ViewModels
 
         private async void SaveAsync()
         {
-            if (Date < DateTime.Now)
-            {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.DateTimeError, Languages.Accept);
-                return;
-            }
-
             IsRunning = true;
             IsEnabled = false;
 
@@ -66,12 +60,11 @@ namespace Churchgoers.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
-
-            //string dateE = (Date.Month + "-" + Date.Day + "-" + Date.Year).ToString();
-
-            string url = App.Current.Resources["UrlAPI"].ToString();
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-            Response response = await _apiService.PostAsync(url, "api", "/Meetings/", Date, token.Token);
+
+            string date = Date.Month + "-" + Date.Day + "-" + Date.Year + " " + DateTime.Now.ToString("HH:mm:ss");
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            Response response = await _apiService.PostAsync(url, "api", "/Meetings/" + date, Date, token.Token);
             IsRunning = false;
             IsEnabled = true;
 
@@ -81,7 +74,7 @@ namespace Churchgoers.Prism.ViewModels
                 return;
             }
 
-            await _navigationService.NavigateAsync($"/{nameof(ChurchMasterDetailPage)}/NavigationPage/{nameof(ShowMeetingsPage)}");
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.MeetingMessage, Languages.Accept);
         }
     }
 }

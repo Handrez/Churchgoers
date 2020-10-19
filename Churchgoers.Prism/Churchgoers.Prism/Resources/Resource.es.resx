@@ -291,6 +291,9 @@
     <data name="Error006" xml:space="preserve">
     <value>Profesión no encontrada.</value>
   </data>
+    <data name="Error007" xml:space="preserve">
+    <value>Reunión no encontrada.</value>
+  </data>
     <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -378,4 +381,15 @@
     <data name="DateTimeError" xml:space="preserve">
     <value>Debes seleccionar una fecha valida.</value>
   </data>
-</root>
+    <data name="Return" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+    <data name="Assistance" xml:space="preserve">
+    <value>Asistencia</value>
+  </data>
+    <data name="AssistanceMessage" xml:space="preserve">
+    <value>Asistencias guardadas exitosamente.</value>
+  </data>
+    <data name="MeetingMessage" xml:space="preserve">
+    <value>Reunión creada exitosamente.</value>
+  </data></root>

@@ -252,11 +252,11 @@ namespace Churchgoers.Common.Services
             }
         }
 
-        public async Task<Response> PostAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token)
+        public async Task<Response> PostAsync(string urlBase, string servicePrefix, string controller, DateTime Date, string token)
         {
             try
             {
-                string request = JsonConvert.SerializeObject(model);
+                string request = JsonConvert.SerializeObject(Date);
                 StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
                 HttpClient client = new HttpClient
                 {
@@ -277,12 +277,10 @@ namespace Churchgoers.Common.Services
                     };
                 }
 
-                T item = JsonConvert.DeserializeObject<T>(result);
-
                 return new Response
                 {
                     IsSuccess = true,
-                    Result = item
+                    Result = Date
                 };
             }
             catch (Exception ex)
@@ -295,11 +293,11 @@ namespace Churchgoers.Common.Services
             }
         }
 
-        public async Task<Response> PutAsync<T>(string urlBase, string servicePrefix, string controller, T model, string token)
+        public async Task<Response> PutAsync(string urlBase, string servicePrefix, string controller, MeetingRequest meetingRequest, string token)
         {
             try
             {
-                string request = JsonConvert.SerializeObject(model);
+                string request = JsonConvert.SerializeObject(meetingRequest);
                 StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
                 HttpClient client = new HttpClient
                 {
@@ -309,19 +307,14 @@ namespace Churchgoers.Common.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.PutAsync(url, content);
-                string result = await response.Content.ReadAsStringAsync();
+                string answer = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return new Response
-                    {
-                        IsSuccess = false,
-                        Message = result,
-                    };
+                    return JsonConvert.DeserializeObject<Response>(answer);
                 }
 
-                T item = JsonConvert.DeserializeObject<T>(result);
-
+                MeetingResponse item = JsonConvert.DeserializeObject<MeetingResponse>(answer);
                 return new Response
                 {
                     IsSuccess = true,

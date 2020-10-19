@@ -291,6 +291,9 @@
     <data name="Error006" xml:space="preserve">
     <value>Beroep niet gevonden.</value>
   </data>
+    <data name="Error007" xml:space="preserve">
+    <value>Vergadering niet gevonden.</value>
+  </data>
     <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -377,5 +380,17 @@
   </data>
     <data name="DateTimeError" xml:space="preserve">
     <value>U moet een geldige datum selecteren.</value>
+  </data>
+    <data name="Return" xml:space="preserve">
+    <value>Keer terug</value>
+  </data>
+    <data name="Assistance" xml:space="preserve">
+    <value>Bijstand</value>
+  </data>
+    <data name="AssistanceMessage" xml:space="preserve">
+    <value>Helpt succesvol opgeslagen.</value>
+  </data>
+    <data name="MeetingMessage" xml:space="preserve">
+    <value>Vergadering succesvol gemaakt.</value>
   </data>
 </root>

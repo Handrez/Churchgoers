@@ -17,5 +17,7 @@ namespace Churchgoers.Web.Helpers
         UserResponse ToUserResponse(User user);
 
         ICollection<MeetingResponse> ToMeetingResponse(ICollection<Meeting> meetings);
+
+        MeetingResponse ToMeetingResponse(Meeting meetings);
     }
 }
